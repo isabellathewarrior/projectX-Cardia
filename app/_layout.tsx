@@ -51,8 +51,22 @@ function RootLayoutNav() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
+        {/* For tabs layout, we want to hide the header */}
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+        {/* Modal or other specific screens */}
+        <Stack.Screen
+          name="modal"
+          options={{ presentation: 'modal', headerShown: false }} // Hide header for modal
+        />
+        {/* Now we can explicitly disable header for login and register pages */}
+        <Stack.Screen
+          name="login"
+          options={{ headerShown: false }} // Hide layout (header) for login page
+        />
+        <Stack.Screen
+          name="register"
+          options={{ headerShown: false }} // Hide layout (header) for register page
+        />
       </Stack>
     </ThemeProvider>
   );

@@ -1,3 +1,5 @@
+// sadece işlevsellik olucak şekilde tasarımla bölünücek
+
 import { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
@@ -19,14 +21,14 @@ export default function RegisterScreen() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleRegister = async () => {
-    // Şifreler uyuşmuyorsa hata mesajını ayarla
     if (password !== confirm) {
       setFormError('Şifreler uyuşmuyor!');
       return;
     }
     setFormError('');
-    router.replace('/(tabs)'); // Başarılı olursa yönlendir
+    router.replace('/(tabs)'); 
   };
+  console.log("Render edilen bileşen:", RegisterScreen.name); // Log the component name
 
   return (
     <KeyboardAvoidingView
@@ -159,25 +161,25 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingHorizontal: 15,
     fontSize: 16,
-    color: '#2c3e50', // Dark gray color
-    marginBottom: 10, // Added margin between inputs
+    color: '#2c3e50', 
+    marginBottom: 10, 
   },
   inputError: {
-    borderColor: 'red', // Optional: you can style errors here
+    borderColor: 'red', 
   },
   passwordWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    position: 'relative', // Keep the eye icon inside the input area
-    marginBottom: 10, // Added margin between password fields
+    position: 'relative',
+    marginBottom: 10, 
   },
   passwordInput: {
-    flex: 1, // Makes the input take all available space
+    flex: 1, 
   },
   eyeIcon: {
     position: 'absolute',
-    right: 15, // Position the eye icon at the right end
+    right: 15, 
     top: '50%',
     transform: [{ translateY: -12 }],
   },
@@ -187,8 +189,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingVertical: 12,
     alignItems: 'center',
-    marginTop: 15, // Added margin top
-    marginBottom: 15, // Added more space between the button and the form
+    marginTop: 15, 
+    marginBottom: 15, 
     alignSelf: 'center',
   },
   buttonText: {

@@ -1,4 +1,3 @@
-// screens/LoginScreen.tsx
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { View, Text, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
@@ -26,6 +25,7 @@ const LoginScreen = () => {
       setFormError(err.message);
     }
   };
+  console.log("Render edilen bileşen:", LoginScreen.name); 
 
   return (
     <KeyboardAvoidingView

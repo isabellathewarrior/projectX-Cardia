@@ -1,3 +1,4 @@
+//layoutlar düzenlenecek
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
@@ -6,7 +7,6 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 
-import { useColorScheme } from '@/components/useColorScheme';
 import { Provider } from 'react-redux';
 import { store } from '@/redux/store';
 
@@ -48,11 +48,9 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  const colorScheme = useColorScheme();
 
   return (
     <Provider store={store}>
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
         {/* For tabs layout, we want to hide the header */}
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
@@ -71,7 +69,6 @@ function RootLayoutNav() {
           options={{ headerShown: false }} // Hide layout (header) for register page
         />
       </Stack>
-    </ThemeProvider>
     </Provider>
   );
 }

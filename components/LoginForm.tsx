@@ -1,8 +1,7 @@
-// components/ui/LoginForm.tsx
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons'; // İkon kütüphanesini ekledik
-import FormError from '../components/ui/FormError';
+import { FontAwesome } from '@expo/vector-icons';
+//import FormError from '../components/ui/FormError';
 
 const LoginForm = ({ handleLogin, formError }: any) => {
   const [email, setEmail] = useState('');
@@ -24,7 +23,7 @@ const LoginForm = ({ handleLogin, formError }: any) => {
           value={email}
           onChangeText={setEmail}
         />
-        {formError && <FormError message={formError} />}
+    {/*{formError && <FormError message={formError} />}*/}
       </View>
 
       <View style={styles.passwordWrapper}>
@@ -39,7 +38,7 @@ const LoginForm = ({ handleLogin, formError }: any) => {
           <FontAwesome name={showPassword ? 'eye-slash' : 'eye'} size={24} color="#42b883" />
         </TouchableOpacity>
       </View>
-      {formError && <FormError message={formError} />}
+      {/*{formError && <FormError message={formError} />}*/}
 
       <TouchableOpacity
         style={styles.button}

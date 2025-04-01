@@ -1,5 +1,3 @@
-// redux/slices/authSlice.ts
-
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { loginRequest } from '../../services/authService';
 import { AuthState, LoginData, User } from '../../types/authTypes';
@@ -7,7 +5,7 @@ import { AuthState, LoginData, User } from '../../types/authTypes';
 const initialState: AuthState = {
   loading: false,
   error: null,
-  user: null, // İlk başta kullanıcı boş
+  user: null, 
 };
 
 // Async login işlemi
@@ -15,7 +13,7 @@ export const loginAsync = createAsyncThunk<User, LoginData, { rejectValue: strin
   'auth/login',
   async (loginData, { rejectWithValue }) => {
     try {
-      return await loginRequest(loginData); // Servis çağrısı başarılıysa User döner
+      return await loginRequest(loginData); 
     } catch (error: any) {
       return rejectWithValue(error.response?.data?.detail || 'Giriş başarısız!');
     }
@@ -35,12 +33,12 @@ const authSlice = createSlice({
     builder
       .addCase(loginAsync.pending, (state) => {
         state.loading = true;
-        state.error = null; // Hataları temizler
-        state.user = null;  // Login sırasında kullanıcı temizlenir
+        state.error = null; 
+        state.user = null; 
       })
       .addCase(loginAsync.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload; // Kullanıcı bilgilerini kaydet
+        state.user = action.payload; 
       })
       .addCase(loginAsync.rejected, (state, action) => {
         state.loading = false;
@@ -49,5 +47,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout } = authSlice.actions; // Logout action'u
+export const { logout } = authSlice.actions;
 export default authSlice.reducer;

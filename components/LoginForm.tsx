@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
-//import FormError from '../components/ui/FormError';
+// import FormError from '../components/ui/FormError'; // Açarsan burayı da aktif et
 
-const LoginForm = ({ handleLogin, formError }: any) => {
+type Props = {
+  handleLogin: (email: string, password: string) => void;
+  formError: string;
+  onNavigateToRegister: () => void; // ✅ eklendi
+};
+
+const LoginForm: React.FC<Props> = ({ handleLogin, formError, onNavigateToRegister }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -15,6 +21,7 @@ const LoginForm = ({ handleLogin, formError }: any) => {
         style={styles.logo}
         resizeMode="contain"
       />
+
       <View style={styles.inputWrapper}>
         <TextInput
           style={[styles.input, formError ? styles.inputError : null]}
@@ -23,7 +30,6 @@ const LoginForm = ({ handleLogin, formError }: any) => {
           value={email}
           onChangeText={setEmail}
         />
-    {/*{formError && <FormError message={formError} />}*/}
       </View>
 
       <View style={styles.passwordWrapper}>
@@ -38,7 +44,9 @@ const LoginForm = ({ handleLogin, formError }: any) => {
           <FontAwesome name={showPassword ? 'eye-slash' : 'eye'} size={24} color="#42b883" />
         </TouchableOpacity>
       </View>
-      {/*{formError && <FormError message={formError} />}*/}
+
+      {/* Optional error component */}
+      {/* {formError && <FormError message={formError} />} */}
 
       <TouchableOpacity
         style={styles.button}
@@ -49,7 +57,7 @@ const LoginForm = ({ handleLogin, formError }: any) => {
 
       <View style={styles.registerSection}>
         <Text style={styles.registerText}>Hesabın yok mu?</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onNavigateToRegister}>
           <Text style={styles.registerLink}>Kaydol</Text>
         </TouchableOpacity>
       </View>

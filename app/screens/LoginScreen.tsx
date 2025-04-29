@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { View, Text, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
 import { useRouter } from 'expo-router';
 import { loginAsync } from '../../redux/slices/authSlice';
 import { AppDispatch } from '../../redux/store';
@@ -25,14 +25,21 @@ const LoginScreen = () => {
       setFormError(err.message);
     }
   };
-  console.log("Render edilen bileşen:", LoginScreen.name); 
+
+  const goToRegister = () => {
+    router.push('/register'); // ✅ Kaydol'a tıklanınca çalışacak
+  };
 
   return (
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
-      <LoginForm handleLogin={handleLogin} formError={formError} />
+      <LoginForm
+        handleLogin={handleLogin}
+        formError={formError}
+        onNavigateToRegister={goToRegister}
+      />
     </KeyboardAvoidingView>
   );
 };

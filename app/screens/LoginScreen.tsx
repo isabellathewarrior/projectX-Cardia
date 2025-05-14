@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { View, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, StyleSheet, KeyboardAvoidingView, Platform, Button } from 'react-native';
 import { useRouter } from 'expo-router';
 import { loginAsync } from '../../redux/slices/authSlice';
 import { AppDispatch } from '../../redux/store';
@@ -27,19 +27,27 @@ const LoginScreen = () => {
   };
 
   const goToRegister = () => {
-    router.push('/register'); // ✅ Kaydol'a tıklanınca çalışacak
+    router.push('/register'); 
   };
+
+  const goToHome = () => {
+router.push('/screens/HomeScreen');  };
 
   return (
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
-      <LoginForm
-        handleLogin={handleLogin}
-        formError={formError}
-        onNavigateToRegister={goToRegister}
-      />
+      <View style={styles.content}>
+        <LoginForm
+          handleLogin={handleLogin}
+          formError={formError}
+          onNavigateToRegister={goToRegister}
+        />
+      </View>
+      <View style={styles.homeButtonContainer}>
+        <Button title="Home" onPress={goToHome} />
+      </View>
     </KeyboardAvoidingView>
   );
 };
@@ -47,9 +55,16 @@ const LoginScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     backgroundColor: '#ddeedf',
     paddingHorizontal: 30,
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  homeButtonContainer: {
+    paddingVertical: 10,
+    alignItems: 'center',
   },
 });
 

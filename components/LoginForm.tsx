@@ -6,7 +6,7 @@ import { FontAwesome } from '@expo/vector-icons';
 type Props = {
   handleLogin: (email: string, password: string) => void;
   formError: string;
-  onNavigateToRegister: () => void; // ✅ eklendi
+  onNavigateToRegister: () => void; 
 };
 
 const LoginForm: React.FC<Props> = ({ handleLogin, formError, onNavigateToRegister }) => {

@@ -1,4 +1,3 @@
-// app/(auth)/RegisterScreen.tsx
 import { useState } from 'react';
 import { useRouter } from 'expo-router';
 import RegisterForm from '../../components/RegisterForm';

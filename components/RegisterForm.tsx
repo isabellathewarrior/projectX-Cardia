@@ -50,8 +50,6 @@ export default function RegisterForm({
       <TextInput style={[styles.input, formError ? styles.inputError : null]} placeholder="Soyisim" value={lastName} onChangeText={onLastNameChange} />
       <TextInput style={[styles.input, formError ? styles.inputError : null]} placeholder="E-posta" keyboardType="email-address" value={email} onChangeText={onEmailChange} />
       <TextInput style={[styles.input, formError ? styles.inputError : null]} placeholder="Telefon Numarası" keyboardType="phone-pad" value={phone} onChangeText={onPhoneChange} />
-      <TextInput style={[styles.input, formError ? styles.inputError : null]} placeholder="Departman" value={department} onChangeText={onDepartmentChange} />
-      <TextInput style={[styles.input, formError ? styles.inputError : null]} placeholder="Hastane Adı" value={hospitalName} onChangeText={onHospitalNameChange} />
 
       <View style={styles.passwordWrapper}>
         <TextInput style={[styles.input, formError ? styles.inputError : null, styles.passwordInput]} placeholder="Şifre" secureTextEntry={!showPassword} value={password} onChangeText={onPasswordChange} />

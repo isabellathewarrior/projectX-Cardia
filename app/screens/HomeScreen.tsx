@@ -1,90 +1,109 @@
-// sadece işlevsellik olucak şekilde tasarımla bölünücek
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';  
-
-export default function HomeScreen() {
-  console.log("Render edilen bileşen:", HomeScreen.name); 
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
+const HomeScreen = () => {
+  const router = useRouter();
+  const userName = 'Esmanur'; // Mock kullanıcı adı
 
   return (
     <View style={styles.container}>
-      {/* Hamburger Menü */}
-      <View style={styles.menuContainer}>
-        <TouchableOpacity>
-          <FontAwesome name="bars" size={24} color="#fff" />
+      <TouchableOpacity style={styles.logoutButton} onPress={() => router.replace('/login')}>
+        <Ionicons name="log-out-outline" size={20} color="#ff6464" />
+        <Text style={styles.logoutText}>Çıkış</Text>
+      </TouchableOpacity>
+      <View style={styles.topSection}>
+        <Text style={styles.welcome}>X-Cardia’ya Hoş Geldin,</Text>
+        <Text style={styles.userName}>{userName} 👋</Text>
+      </View>
+
+      {/* Butonlar */}
+      <View style={styles.bottomSection}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => router.push('/screens/ChatBotScreen')}
+        >
+          <Text style={styles.buttonText}>🤖 Akıllı Asistan</Text>
         </TouchableOpacity>
-      </View>
 
-      {/* Filtreler */}
-      <View style={styles.filterContainer}>
-        <Text style={styles.filterText}>Filtreler</Text>
-        <View style={styles.filterButtons}>
-          <TouchableOpacity style={styles.filterButton}>
-            <Text style={styles.filterButtonText}>Yeni</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.filterButton}>
-            <Text style={styles.filterButtonText}>Popüler</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-
-      {/* Ana Sayfa Başlığı */}
-      <View style={styles.mainContent}>
-        <Text style={styles.title}>🏠 Ana Sayfa</Text>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => router.push('/screens/ProfileScreen')}
+        >
+          <Text style={styles.buttonText}>👤 Profil</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f1f1f1',
-    paddingTop: 50,
+    backgroundColor: '#f4f4f4',
+    paddingHorizontal: 30,
+    paddingTop: 60,
+    paddingBottom: 40,
+    justifyContent: 'space-between',
   },
-  menuContainer: {
-    position: 'absolute',
-    top: 20,
-    left: 20,
-    zIndex: 10,
+  topSection: {
+    marginTop: 20,
   },
-  filterContainer: {
-    paddingHorizontal: 20,
-    paddingTop: 20,
-    backgroundColor: '#42b883',
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-    paddingBottom: 15,
+  welcome: {
+    fontSize: 26,
+    fontWeight: '700',
+    color: '#283739',
+    textAlign: 'left',
+    marginBottom: 4,
   },
-  filterText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#fff',
-    marginBottom: 10,
-  },
-  filterButtons: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  filterButton: {
-    backgroundColor: '#fff',
-    borderRadius: 20,
-    paddingVertical: 8,
-    paddingHorizontal: 20,
-  },
-  filterButtonText: {
-    fontSize: 14,
-    fontWeight: '600',
+  userName: {
+    fontSize: 22,
+    fontWeight: '500',
     color: '#42b883',
+    textAlign: 'left',
   },
-  mainContent: {
-    flex: 1,
-    justifyContent: 'center',
+  bottomSection: {
+    gap: 20,
+  },
+  button: {
+    backgroundColor: '#42b883',
+    paddingVertical: 18,
+    paddingHorizontal: 24,
+    borderRadius: 16,
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 4,
   },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#333',
+  buttonText: {
+    color: '#fff',
+    fontSize: 17,
+    fontWeight: '600',
   },
+   logoutButton: {
+  position: 'absolute',
+  top: 20, 
+  right: 16, 
+  flexDirection: 'row',
+  alignItems: 'center',
+  backgroundColor: '#fff',
+  paddingHorizontal: 8,
+  paddingVertical: 4,
+  borderRadius: 16,
+  borderWidth: 1,
+  borderColor: '#ff6464',
+  shadowColor: '#000',
+  shadowOpacity: 0.05,
+  shadowRadius: 2,
+  elevation: 1,
+},
+logoutText: {
+  marginLeft: 4,
+  color: '#ff6464',
+  fontWeight: '500',
+  fontSize: 12,
+},
 });
+
+export default HomeScreen;
